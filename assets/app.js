@@ -39,11 +39,9 @@
   /* ---------- site header / nav ---------- */
   var NAV = [
     { href: "index.html", label: "首頁" },
-    { href: "learn.html", label: "上手學習" },
     { href: "part1.html", label: "功能指南" },
     { href: "gallery.html", label: "用例藝廊" },
-    { href: "part2.html", label: "更新情報" },
-    { href: "contribute.html", label: "團隊飛輪" }
+    { href: "part2.html", label: "更新情報" }
   ];
   function currentPage() {
     var seg = location.pathname.split("/").filter(Boolean).pop() || "index.html";
