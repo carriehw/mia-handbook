@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mia 說明書 Part 1 · 功能與使用指南（IHK AM 團隊）</title>
+<style>
+  :root {
+    --accent:#B45E3C; --accent-strong:#9A4A2C; --accent-tint:#F6E9E1;
+    --ink:#2A2622; --ink-strong:#1C1917; --muted:#726B63; --faint:#968C81;
+    --paper:#FBF7F1; --surface:#FFFFFF; --surface-alt:#F4EEE6;
+    --border:#E7DFD4; --border-strong:#D8CCBC;
+    --tip:#2E7D5B; --tip-bg:#E7F3EC; --warn:#B4791E; --warn-bg:#FBF0DA;
+    --limit:#B4382E; --limit-bg:#FBE7E4; --ex:#2E5E8C; --ex-bg:#E6EFF6;
+    --font-sans:"PingFang TC","Microsoft JhengHei","Noto Sans TC","Heiti TC",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+    --font-serif:"Songti TC","PingFang TC",Georgia,"Times New Roman",serif;
+    --font-mono:"SFMono-Regular","SF Mono","Cascadia Code",Consolas,"Courier New",monospace;
+    --maxw:820px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px;
+    --sp-6:32px; --sp-7:48px; --sp-8:64px; --sp-9:96px;
+    --r-sm:8px; --r:14px; --r-lg:22px;
+    --shadow:0 1px 2px rgba(28,25,23,.04),0 6px 20px rgba(28,25,23,.06);
+    --shadow-lift:0 4px 10px rgba(28,25,23,.06),0 14px 34px rgba(28,25,23,.10);
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+  body { margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--font-sans); font-size:16px; line-height:1.75;
+    letter-spacing:.01em; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1200px; margin:0 auto; display:grid;
+          grid-template-columns:260px minmax(0,1fr); gap:var(--sp-7); padding:0 var(--sp-5); }
+  main { max-width:var(--maxw); padding-bottom:var(--sp-9); }
+  h1,h2,h3,h4 { color:var(--ink-strong); margin:0 0 var(--sp-4); line-height:1.3; }
+  h1 { font-family:var(--font-serif); font-size:2.6rem; font-weight:700; letter-spacing:-.01em; line-height:1.2; }
+  h2 { font-family:var(--font-serif); font-size:1.85rem; font-weight:700; letter-spacing:-.005em; }
+  h3 { font-size:1.3rem; font-weight:600; margin-top:var(--sp-6); }
+  h4 { font-size:1.05rem; font-weight:600; letter-spacing:.02em; }
+  p { margin:0 0 var(--sp-4); }
+  ul,ol { margin:0 0 var(--sp-4); padding-left:1.4em; }
+  li { margin:4px 0; }
+  a { color:var(--accent); text-decoration:none; }
+  a:hover { color:var(--accent-strong); text-decoration:underline; }
+  :focus-visible { outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }
+  .eyebrow { font-size:.8rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+             color:var(--accent); margin-bottom:var(--sp-2); }
+  .lede { color:var(--muted); font-size:1.05rem; }
+  small,.small { font-size:.85rem; color:var(--muted); }
+  .kicker { color:var(--muted); font-size:.92rem; margin:-8px 0 var(--sp-5); }
+  .hero { background:linear-gradient(180deg,#FFFDFA,var(--accent-tint));
+          border:1px solid var(--border); border-radius:var(--r-lg);
+          padding:var(--sp-8) var(--sp-7); margin:var(--sp-6) 0 var(--sp-7); box-shadow:var(--shadow); }
+  .hero .rule { width:56px; height:3px; background:var(--accent); border-radius:2px; margin:var(--sp-5) 0; }
+  .meta { display:flex; flex-wrap:wrap; gap:var(--sp-5); color:var(--muted); font-size:.9rem; }
+  .meta b { color:var(--ink-strong); font-weight:600; }
+  nav.toc { position:sticky; top:var(--sp-5); align-self:start; padding-top:var(--sp-6);
+            max-height:100vh; overflow:auto; }
+  nav.toc .brand { font-family:var(--font-serif); font-weight:700; color:var(--ink-strong);
+                   font-size:1.15rem; margin-bottom:var(--sp-5); }
+  nav.toc a { display:block; color:var(--muted); font-size:.92rem; padding:6px 12px;
+              border-left:2px solid transparent; border-radius:0 6px 6px 0; }
+  nav.toc a:hover { background:var(--accent-tint); color:var(--ink-strong); text-decoration:none; }
+  nav.toc a.active { color:var(--accent-strong); border-left-color:var(--accent);
+                     background:var(--accent-tint); font-weight:600; }
+  section { padding-top:var(--sp-8); scroll-margin-top:var(--sp-5); }
+  section + section { border-top:1px solid var(--border); }
+  .card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r);
+          padding:var(--sp-6); box-shadow:var(--shadow); margin:var(--sp-5) 0; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:var(--sp-5); }
+  .grid .card { margin:0; transition:transform .18s ease, box-shadow .18s ease; }
+  .grid .card:hover { transform:translateY(-2px); box-shadow:var(--shadow-lift); }
+  .grid .card h4 { margin-bottom:6px; }
+  .grid .card p { margin-bottom:0; color:var(--muted); font-size:.95rem; }
+  .chip { display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px;
+          border-radius:12px; background:var(--accent-tint); font-size:1.3rem; margin-bottom:var(--sp-3); }
+  .callout { border:1px solid var(--border); border-left-width:4px; border-radius:var(--r-sm);
+             padding:var(--sp-4) var(--sp-5); margin:var(--sp-5) 0; }
+  .callout .label { font-weight:700; display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .callout p:last-child { margin-bottom:0; }
+  .callout.tip { background:var(--tip-bg); border-left-color:var(--tip); }
+  .callout.tip .label { color:var(--tip); }
+  .callout.warn { background:var(--warn-bg); border-left-color:var(--warn); }
+  .callout.warn .label { color:var(--warn); }
+  .callout.limit { background:var(--limit-bg); border-left-color:var(--limit); font-weight:500; }
+  .callout.limit .label { color:var(--limit); }
+  .callout.ex { background:var(--ex-bg); border-left-color:var(--ex); }
+  .callout.ex .label { color:var(--ex); }
+  .recipe { position:relative; background:var(--surface-alt); border:1px dashed var(--border-strong);
+            border-radius:var(--r-sm); padding:var(--sp-6) var(--sp-5) var(--sp-5);
+            font-family:var(--font-mono); font-size:.9rem; line-height:1.7; color:var(--ink);
+            white-space:pre-wrap; margin:var(--sp-5) 0; }
+  .recipe::before { content:"提示詞範例"; position:absolute; top:-10px; left:16px;
+                    background:var(--accent); color:#fff; font-family:var(--font-sans);
+                    font-size:.72rem; font-weight:700; letter-spacing:.08em;
+                    padding:2px 10px; border-radius:20px; }
+  .recipe b { color:var(--accent-strong); }
+  .compare { display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-4); margin:var(--sp-5) 0; }
+  .compare > div { border-radius:var(--r-sm); padding:var(--sp-4) var(--sp-5); border:1px solid var(--border); }
+  .compare .do { background:var(--tip-bg); }
+  .compare .dont { background:var(--limit-bg); }
+  .compare h4 { margin-bottom:var(--sp-3); }
+  .compare .do h4 { color:var(--tip); }
+  .compare .dont h4 { color:var(--limit); }
+  .compare ul { margin:0; padding-left:1.2em; }
+  .sheet { width:100%; border-collapse:separate; border-spacing:0; margin:var(--sp-5) 0;
+           border:1px solid var(--border-strong); border-radius:var(--r-sm); overflow:hidden; font-size:.95rem; }
+  .sheet th,.sheet td { text-align:left; padding:12px 16px; border-bottom:1px solid var(--border); vertical-align:top; }
+  .sheet thead th { background:var(--ink-strong); color:#fff; font-weight:600; }
+  .sheet tbody tr:nth-child(even) { background:var(--surface-alt); }
+  .sheet tbody tr:last-child td { border-bottom:none; }
+  .sheet code { background:var(--accent-tint); color:var(--accent-strong); padding:1px 6px; border-radius:5px;
+                font-family:var(--font-mono); font-size:.85em; }
+  .steps { list-style:none; counter-reset:s; padding:0; margin:var(--sp-5) 0; }
+  .steps li { counter-increment:s; position:relative; padding:0 0 var(--sp-5) 52px; }
+  .steps li::before { content:counter(s); position:absolute; left:0; top:0; width:32px; height:32px;
+                      border-radius:50%; background:var(--accent); color:#fff; font-weight:700;
+                      display:flex; align-items:center; justify-content:center; font-size:.95rem; }
+  .steps li:not(:last-child)::after { content:""; position:absolute; left:15px; top:36px; bottom:6px;
+                      width:2px; background:var(--border-strong); }
+  .ladder { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:var(--sp-5); margin:var(--sp-5) 0; }
+  .ladder .card { margin:0; border-top:4px solid var(--border-strong); }
+  .ladder .d1 { border-top-color:var(--tip); }
+  .ladder .w1 { border-top-color:var(--warn); }
+  .ladder .adv { border-top-color:var(--ex); }
+  .badge { display:inline-block; font-size:.72rem; font-weight:700; letter-spacing:.06em;
+           padding:2px 10px; border-radius:20px; margin-bottom:var(--sp-3); }
+  .badge.d1 { background:var(--tip-bg); color:var(--tip); }
+  .badge.w1 { background:var(--warn-bg); color:var(--warn); }
+  .badge.adv { background:var(--ex-bg); color:var(--ex); }
+  .path { border-left:3px solid var(--accent); background:var(--accent-tint);
+          padding:6px 14px; border-radius:0 8px 8px 0; font-family:var(--font-mono);
+          font-size:.85rem; color:var(--accent-strong); display:inline-block; margin:2px 0; }
+  details { border:1px solid var(--border); border-radius:var(--r-sm); padding:var(--sp-3) var(--sp-5);
+            margin:var(--sp-4) 0; background:var(--surface); }
+  details summary { cursor:pointer; font-weight:600; color:var(--ink-strong); }
+  details[open] summary { margin-bottom:var(--sp-3); }
+  .num { display:inline-flex; width:26px; height:26px; border-radius:50%; background:var(--accent);
+         color:#fff; font-weight:700; font-size:.85rem; align-items:center; justify-content:center;
+         margin-right:8px; flex:0 0 auto; }
+  .mind { display:flex; align-items:flex-start; gap:4px; margin:var(--sp-4) 0; }
+  .mind div b { color:var(--ink-strong); }
+  #top { position:fixed; right:22px; bottom:22px; background:var(--accent); color:#fff;
+         width:44px; height:44px; border-radius:50%; display:none; align-items:center;
+         justify-content:center; box-shadow:var(--shadow-lift); font-size:1.2rem; cursor:pointer;
+         border:none; z-index:20; }
+  #top.show { display:flex; }
+  footer { margin-top:var(--sp-8); padding-top:var(--sp-5); border-top:1px solid var(--border);
+           text-align:center; color:var(--muted); font-size:.85rem; }
+  @media (max-width:960px) {
+    .wrap { grid-template-columns:1fr; gap:0; }
+    nav.toc { position:sticky; top:0; z-index:10; max-height:none; padding:var(--sp-3) 0;
+              background:var(--paper); border-bottom:1px solid var(--border); }
+    nav.toc a { display:inline-block; border-left:none; }
+    nav.toc .brand { display:none; }
+    .compare { grid-template-columns:1fr; }
+    h1 { font-size:2.1rem; }
+  }
+  @page { margin:16mm; }
+  @media print {
+    body { background:#fff; color:#000; font-size:11.5pt; }
+    .wrap { display:block; max-width:none; padding:0; }
+    nav.toc,#top { display:none; }
+    .hero { background:#fff; box-shadow:none; }
+    .card,.grid .card { box-shadow:none; border:1px solid #bbb; }
+    .card,.callout,.recipe,.compare,.steps li,.sheet tr { break-inside:avoid; }
+    section + section { border-top:1px solid #ccc; }
+    a { color:#000; text-decoration:underline; }
+    .grid .card:hover { transform:none; }
+  }
+
+  /* --- mini-site additions --- */
+  .site{position:sticky;top:0;z-index:30;background:rgba(251,247,241,.94);
+        -webkit-backdrop-filter:saturate(1.2) blur(8px);backdrop-filter:saturate(1.2) blur(8px);
+        border-bottom:1px solid var(--border);}
+  .site-in{max-width:1200px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;
+           justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .site .logo{font-family:var(--font-serif);font-weight:700;color:var(--ink-strong);font-size:1.05rem;
+              text-decoration:none;white-space:nowrap;}
+  .site .logo:hover{color:var(--accent-strong);text-decoration:none;}
+  .site-nav{display:flex;gap:4px;flex-wrap:wrap;}
+  .site-nav a{font-size:.9rem;color:var(--muted);padding:6px 12px;border-radius:20px;
+              text-decoration:none;white-space:nowrap;}
+  .site-nav a:hover{background:var(--accent-tint);color:var(--ink-strong);text-decoration:none;}
+  .site-nav a.cur{background:var(--accent);color:#fff;}
+  nav.toc{top:66px;max-height:calc(100vh - 76px);}
+  section{scroll-margin-top:76px;}
+  .page{max-width:900px;margin:0 auto;padding:0 24px 96px;}
+  .linkcard{display:block;text-decoration:none;color:inherit;
+            transition:transform .18s ease,box-shadow .18s ease;}
+  .linkcard:hover{transform:translateY(-2px);box-shadow:var(--shadow-lift);text-decoration:none;color:inherit;}
+  .linkcard .go{color:var(--accent);font-weight:600;font-size:.92rem;margin-top:16px;display:inline-block;}
+  @media (max-width:960px){
+    nav.toc{display:none!important;}
+    .site-in{padding:8px 16px;}
+    .site .logo{font-size:.98rem;}
+    .site-nav a{font-size:.82rem;padding:5px 10px;}
+    .page{padding:0 16px 64px;}
+  }
+</style>
+</head>
+<body>
+<header class="site"><div class="site-in"><a class="logo" href="index.html">✦ Mia 說明書</a><nav class="site-nav"><a href="index.html">首頁</a><a href="part1.html" class="cur">Part 1 · 功能指南</a><a href="part2.html">Part 2 · 更新情報</a></nav></div></header>
+
+<div class="wrap">
+  <nav class="toc" id="toc">
+    <div class="brand">Mia 說明書 · Part 1</div>
+    <a href="#intro">1. 認識 Mia</a>
+    <a href="#map">2. 能力全景圖</a>
+    <a href="#start">3. 五分鐘快速上手</a>
+    <a href="#files">4. 對話與檔案交付</a>
+    <a href="#reports">5. 客戶報告與數據</a>
+    <a href="#content">6. 內容產製</a>
+    <a href="#research">7. 市場研究</a>
+    <a href="#memory">8. 記憶與個人化</a>
+    <a href="#skills">9. Skills 與 Skilla</a>
+    <a href="#routines">10. Routines 定時任務</a>
+    <a href="#library">11. Library 與多客戶</a>
+    <a href="#self">12. Mia 通道與協作</a>
+    <a href="#insights">13. 會話洞察</a>
+    <a href="#prompting">14. 高效提示技巧</a>
+    <a href="#recipes">15. Prompt 食譜庫</a>
+    <a href="#limits">16. 安全與界限</a>
+    <a href="#cheat">17. 速查表</a>
+    <a href="#faq">18. 詞彙表 & FAQ</a>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div class="eyebrow">Mia 說明書 · Part 1 / 2</div>
+      <h1>Mia 功能與使用指南</h1>
+      <p class="lede">給 IHK AM 團隊的完整 Mia 導覽 — 認識她能做什麼，以及如何用她完成你的工作。</p>
+      <div class="rule"></div>
+      <div class="meta">
+        <span>版本 <b>1.0</b></span>
+        <span>對象 <b>IHK AM 團隊</b></span>
+        <span>日期 <b>2026-07</b></span>
+        <span>另見 <b>Part 2 · 更新情報</b></span>
+      </div>
+    </header>
+
+    <section id="intro">
+      <div class="eyebrow">01 · 認識</div>
+      <h2>認識 Mia：團隊的 AI 工作夥伴</h2>
+      <p>Mia 是團隊的 AI 工作夥伴——一位能實際交付成果的資深同事。你只要用日常語言說清楚想要什麼：一份 RTB 週報、幾篇各具特色的 WeChat 推文、一批 XHS 水下筆記、一份帶引用的市場研究，她就能為你做出可直接使用的檔案（報告、Excel、簡報、圖片），並整理進以客戶分類、跨對話延續的 Library。她會在你需要時反問你、在任務完成時主動通知你、把重複的工作變成自動執行的 Routine。你不需要懂任何技術——只要說清楚結果與情境，剩下的交給 Mia。</p>
+
+      <div class="callout ex"><div class="label">📖 本說明書分兩部分</div><p><b>Part 1（本篇）</b>：Mia 全部功能與使用方法，讓你快速上手。<br><b>Part 2 · 更新情報（What's New）</b>：Mia 每有新功能就在那裡第一手更新，並附「怎麼用」。想知道最新能力，看 Part 2。</p></div>
+
+      <h3>Mia 和一般聊天機器人有什麼不同？</h3>
+      <div class="grid">
+        <div class="card"><div class="chip">📎</div><h4>她會交付檔案</h4><p>不是只回你一段文字，而是產出可下載、可轉寄的 Excel、簡報、報告、圖片。</p></div>
+        <div class="card"><div class="chip">🧠</div><h4>她會記憶</h4><p>記住你的偏好與標準做法，不用每次重講「用繁中、專業口吻」。</p></div>
+        <div class="card"><div class="chip">🗂️</div><h4>她會保存</h4><p>把有價值的產出放進以客戶分類的 Library，下次任何對話都能接著做。</p></div>
+        <div class="card"><div class="chip">⏰</div><h4>她會排程</h4><p>把每週報表這類重複工作設成 Routine，時間到自動幫你跑。</p></div>
+        <div class="card"><div class="chip">🧰</div><h4>她有技能庫</h4><p>透過 Skilla 目錄取用現成的專業流程與整合，不必每次從零開始。</p></div>
+        <div class="card"><div class="chip">🔔</div><h4>她會主動找你</h4><p>可用她自己的 Slack／Email 在任務完成時通知你，你不用一直守著。</p></div>
+      </div>
+
+      <div class="callout tip"><div class="label">💡 一句話心法</div><p>把 Mia 當成一位「聽得懂業務、會動手做、還會幫你收好檔案」的資深同事——你負責交代清楚，她負責做出來。</p></div>
+    </section>
+
+    <section id="map">
+      <div class="eyebrow">02 · 索引</div>
+      <h2>能力全景圖（一眼看懂）</h2>
+      <p class="kicker">時間緊迫時，先在這裡定位你要達成的事，再跳到對應章節。</p>
+      <table class="sheet">
+        <thead><tr><th>你想達成的事</th><th>Mia 的能力</th><th>看哪一章</th></tr></thead>
+        <tbody>
+          <tr><td>做一份客戶報告 / Excel / 簡報</td><td>對話與檔案交付、客戶報告</td><td>§4、§5</td></tr>
+          <tr><td>寫 WeChat 文章 / XHS 筆記 / KOC brief</td><td>內容產製</td><td>§6</td></tr>
+          <tr><td>做競品 / 市場趨勢研究（要引用）</td><td>深度研究 <code>deep-research</code></td><td>§7</td></tr>
+          <tr><td>讓 Mia 記住我的偏好與做法</td><td>記憶與個人化</td><td>§8</td></tr>
+          <tr><td>把重複流程變成可複用的做法</td><td>Skills 與 Skilla 目錄</td><td>§9</td></tr>
+          <tr><td>每週報表自動跑</td><td>Routines（定時任務）</td><td>§10</td></tr>
+          <tr><td>跨對話保存並延續客戶工作</td><td>Library（依客戶分類）</td><td>§11</td></tr>
+          <tr><td>讓 Mia 通知我 / 轉寄同事</td><td><code>mia-self</code> / <code>directory</code></td><td>§12</td></tr>
+          <tr><td>回顧過去做了什麼 / 產出了哪些檔</td><td>會話洞察 <code>session-insights</code></td><td>§13</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="start">
+      <div class="eyebrow">03 · 上手</div>
+      <h2>五分鐘快速上手</h2>
+      <p>不用讀完整本說明書。以下「三段學習階梯」對應日常工作，每一步都能立刻看到產出。</p>
+      <div class="ladder">
+        <div class="card d1">
+          <span class="badge d1">🟢 DAY 1 · 今天就試</span>
+          <ul>
+            <li><b>做一份週報草稿</b>：點名一個數據檔，說「幫我做 [客戶] 本週 RTB recap，重點放投放成效與下週建議」。</li>
+            <li><b>寫一則內容</b>：給品牌、賣點、受眾，請她寫一則 XHS 筆記或 WeChat 段落。</li>
+            <li><b>教她記住偏好</b>：「以後所有報告都用繁體中文、專業口吻。」</li>
+          </ul>
+        </div>
+        <div class="card w1">
+          <span class="badge w1">🟡 WEEK 1 · 建立習慣</span>
+          <ul>
+            <li><b>建第一個客戶 Library 夾</b>：請她依 client 結構整理某客戶的產出。</li>
+            <li><b>跑一次深度研究</b>：出一份帶引用的競品／趨勢報告。</li>
+            <li><b>設第一個 Routine</b>：每週一自動草擬某客戶的 RTB 週報骨架。</li>
+            <li><b>練下需求公式</b>：用「成果＋情境＋受眾」重下一次，比較差異。</li>
+          </ul>
+        </div>
+        <div class="card adv">
+          <span class="badge adv">🔵 進階 · 放大槓桿</span>
+          <ul>
+            <li><b>沉澱一個 Skill</b>：把反覆用的流程（如 XHS 水下筆記）發佈成可複用 Skill。</li>
+            <li><b>多客戶並行</b>：讓 Mia 用子代理同時整理多個客戶或並行研究。</li>
+            <li><b>跨會話延續</b>：新對話開場請她「先讀該客戶 Library README 與 roadmap 再繼續」。</li>
+            <li><b>協作通知</b>：用 <code>mia-self</code> 在產出完成時通知你或轉寄同事。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="files">
+      <div class="eyebrow">04 · 核心能力</div>
+      <h2>對話與檔案交付</h2>
+      <p><b>這是什麼：</b>你下需求，Mia 產出的文件、表格、簡報、圖片會自動交付到你所在的介面——網頁下載、Email 附件、Slack／WhatsApp 上傳，全部自動。你永遠不需要「自己把文字複製出來存檔」。</p>
+      <p><b>什麼時候用：</b>任何要「拿到一份可用檔案」的時候。</p>
+      <h3>file-space 與 library 的差別（很重要）</h3>
+      <table class="sheet">
+        <thead><tr><th>存放位置</th><th>用途</th><th>會怎樣</th></tr></thead>
+        <tbody>
+          <tr><td><span class="path">file-space/</span></td><td>本次對話的產出與暫存</td><td>出現在 Canvas「In this chat」，可即時下載</td></tr>
+          <tr><td><span class="path">library/</span></td><td>需跨會話保存的客戶資產</td><td>永久保存，之後任何對話都找得到</td></tr>
+        </tbody>
+      </table>
+      <div class="callout tip"><div class="label">💡 小技巧</div><p>報告做完後加一句「存進 Library 的 [客戶] > reports」，它就會歸位，下次不用重找。</p></div>
+      <div class="callout warn"><div class="label">⚠️ 注意</div><p>只留在對話裡的檔案，會隨著對話變長而被壓縮、難以追回。有價值的產出，當下就請她收進 Library。</p></div>
+    </section>
+
+    <section id="reports">
+      <div class="eyebrow">05 · 核心能力</div>
+      <h2>客戶報告與數據</h2>
+      <p><b>這是什麼：</b>把數據（附檔或 dashboard 連結）交給 Mia，她整理成結構化的週報、月報、Excel、重點摘要。</p>
+      <p><b>代理商範例：</b>Travel Retail 的 WeChat Moments RTB 週報——花費、曝光、CTR、CVR、CPA，與上週對比、異常說明、下週建議。</p>
+      <div class="recipe">幫我做 <b>[客戶名]</b> 本週 RTB 週報。
+資料：<b>[貼上／點名數據檔]</b>。
+重點：投放成效（花費、曝光、CTR、CVR、CPA）、與上週對比、異常說明、下週 2–3 點建議。
+受眾：<b>[客戶窗口／內部主管]</b>，語氣專業、繁體中文。
+產出：Excel 報表 + 一頁重點摘要；完成後存到 Library 的 <b>[客戶] &gt; reports</b>。</div>
+      <div class="callout warn"><div class="label">⚠️ 常見陷阱</div><p>沒說「給誰看」→ 語氣抓不準；沒點名數據檔 → 她只能用你貼的片段。這兩點補上，第一版就接近可用。</p></div>
+    </section>
+
+    <section id="content">
+      <div class="eyebrow">06 · 核心能力</div>
+      <h2>內容產製</h2>
+      <p><b>這是什麼：</b>WeChat 文章、小紅書（XHS）水下筆記、KOL／KOC 達人 brief 的產製與客製化。</p>
+      <h3>WeChat 文章（跨物業必須差異化）</h3>
+      <div class="recipe">幫 <b>[客戶]</b> 旗下 <b>[物業 A、物業 B、物業 C]</b> 各寫一篇 WeChat 推文。
+每間必須有不同切入角度與行文，不要互相雷同——
+<b>[物業 A]</b> 主打 <b>[賣點]</b>、<b>[物業 B]</b> 主打 <b>[賣點]</b>、<b>[物業 C]</b> 主打 <b>[賣點]</b>。
+受眾：計劃赴 <b>[目的地]</b> 的中國高端旅客。每篇約 <b>[字數]</b>，附標題與導語。</div>
+      <h3>XHS 水下筆記（批量、需過內容審查）</h3>
+      <div class="recipe">幫 <b>[客戶／餐廳]</b> 生產 <b>[數量]</b> 篇 XHS 水下筆記，主題 <b>[主題]</b>。
+先自我審查（促銷詞、價格、酒類、廣告法絕對化、商標詞、官方語氣、AI 生成信號、模板化、協同發布信號）再輸出。
+每篇要有不同人設聲音與開頭，不要套同一句式。輸出成清單存進 Library。</div>
+      <div class="callout tip"><div class="label">💡 把品質標準「制度化」</div><p>可把品牌專屬規則（例如 XHS 內容審查清單、各物業文章不可雷同）請 Mia 記進記憶，她每次都會自動套用——不用每次口頭提醒。</p></div>
+    </section>
+
+    <section id="research">
+      <div class="eyebrow">07 · 核心能力</div>
+      <h2>市場研究與深度研究</h2>
+      <p><b>兩種模式：</b>快速問答用一般對話即可；需要「多來源、可查證、附引用」的正式報告，就明確說用<b>深度研究</b>（<code>deep-research</code>）。</p>
+      <div class="recipe">用深度研究幫我出一份 <b>[主題]</b> 報告。
+範圍：<b>[時間／地區／品類，例如中國市場、XHS + WeChat]</b>。
+我要：關鍵發現、對我們客戶的機會點、<b>附來源引用</b>，結尾給 3 條可落地建議。
+產出：繁體中文報告，存到 Library 的 <b>[客戶] &gt; reports &gt; research</b>。</div>
+      <div class="callout warn"><div class="label">⚠️ 海外社媒數據</div><p>需要海外社媒／小紅書實際數據時，Mia 有專門管道；若是大規模抓取（可能有成本），她會先跟你確認範圍再開始。</p></div>
+    </section>
+
+    <section id="memory">
+      <div class="eyebrow">08 · 核心能力</div>
+      <h2>記憶與個人化</h2>
+      <p>說「<b>記住</b>／以後都…」，Mia 會把它存成長期偏好；說「<b>忘掉</b>…」則移除。適合放：慣用語言與口吻、客戶專屬規則、內容審查標準、Library 結構偏好。</p>
+      <div class="compare">
+        <div class="do"><h4>✅ 值得記住</h4><ul><li>所有報告用繁中、專業口吻</li><li>各物業文章不可雷同</li><li>XHS 內容審查清單</li><li>產出一律歸進 Library 客戶夾</li></ul></div>
+        <div class="dont"><h4>❌ 不必記住</h4><ul><li>只用一次的臨時要求</li><li>單一對話的細節</li><li>會頻繁變動的數字</li></ul></div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="eyebrow">09 · 進階</div>
+      <h2>Skills 與 Skilla 目錄</h2>
+      <p><b>Skill</b> 是一套現成的專業做法或整合；<b>Skilla</b> 是它們的目錄。覺得「這 Mia 大概做不到」之前，先讓她搜一下目錄——很多流程已經有現成的做法。你也可以把自己反覆用的流程，<b>沉澱成可複用的 Skill</b>，讓全團隊共用。</p>
+      <div class="recipe">我們剛剛做的 <b>[某流程，例如 RTB 週報]</b> 以後每次都會用到。
+幫我看看能不能整理成一個可複用的 Skill，下次直接套用。</div>
+      <div class="callout tip"><div class="label">💡 團隊槓桿</div><p>把一次性工作變成 Skill，等於把一個人的做法變成全團隊的資產——這是用好 Mia 最大的效率放大器。</p></div>
+    </section>
+
+    <section id="routines">
+      <div class="eyebrow">10 · 進階</div>
+      <h2>Routines（定時自動任務）</h2>
+      <p>把每週報表、定期巡檢這類固定動作交給 Routine 自動執行。可建立、暫停、恢復、檢視。</p>
+      <div class="recipe">幫我設一個每週 <b>[星期幾 幾點]</b> 的 Routine：
+自動整理 <b>[客戶名]</b> 上週的 <b>[報表／數據]</b>，做成週報存進 Library，
+完成後用你的管道提醒我一聲。</div>
+      <div class="callout tip"><div class="label">💡 用來做什麼</div><p>週報、每日情報、帳戶巡檢、餘額提醒——凡是「固定時間要做的重複事」，都適合設成 Routine，無人值守自動跑。</p></div>
+    </section>
+
+    <section id="library">
+      <div class="eyebrow">11 · 進階</div>
+      <h2>Library 與多客戶管理</h2>
+      <p>Library 是以<b>客戶為單位</b>的持久工作區，跨對話延續。每個活躍客戶夾建議：</p>
+      <ul>
+        <li><b>README.md</b> — 導覽（這個客戶有什麼、放在哪）</li>
+        <li><b>roadmap.md</b> — 進度追蹤（做到哪、下一步）</li>
+        <li>子資料夾：<b>content / reports / assets / links / archive</b></li>
+        <li>重要外部連結（OneDrive／SharePoint／dashboard）→ 建 <b>links 索引檔</b></li>
+      </ul>
+      <div class="recipe">幫我把這個對話裡有價值的產出，歸進 Library 的 <b>[客戶名]</b> 資料夾。
+依 README / roadmap / content / reports / assets / links / archive 結構分類，
+並更新該客戶的 README.md 與 roadmap.md。
+之後每次我提到 <b>[客戶]</b>，請先讀它的 README 與 roadmap 再繼續。</div>
+      <div class="callout tip"><div class="label">💡 跨會話延續的關鍵</div><p>新對話別從頭講。開場一句「先讀 [客戶] 的 Library README 與 roadmap，再繼續」，Mia 就能無縫接上上次的進度。</p></div>
+    </section>
+
+    <section id="self">
+      <div class="eyebrow">12 · 進階</div>
+      <h2>Mia 自己的通道與同事協作</h2>
+      <p><code>mia-self</code> 讓 Mia 用<b>她自己的身分</b>（她的 Slack、她的信箱）通知你，或把成果 email 給公司內的同事。<code>directory</code> 則用來查同事。</p>
+      <div class="recipe">這份 <b>[報告名]</b> 完成後，幫我 email 給同事 <b>[姓名／email]</b>，
+附上檔案，正文簡短說明這是什麼、重點在哪。以你自己的身分寄。</div>
+      <div class="callout warn"><div class="label">⚠️ 界限</div><p>Slack 通知只會發給你本人；Email 可寄給你或公司內允許的同事，<b>不會</b>寄給公司外部人士，也不會發到共用頻道。</p></div>
+    </section>
+
+    <section id="insights">
+      <div class="eyebrow">13 · 進階</div>
+      <h2>會話洞察（回顧過去的工作）</h2>
+      <p>想知道「之前關於某客戶做了什麼、產出了哪些檔、有沒有沒做完的事」，用<b>會話洞察</b>。它只看你自己（或你有權限範圍內）的會話。</p>
+      <div class="recipe">幫我找一下之前關於 <b>[客戶／主題]</b> 的對話，
+摘要當時做了什麼、產出了哪些檔案、有沒有未完成的事，方便我接著做。</div>
+    </section>
+
+    <section id="prompting">
+      <div class="eyebrow">14 · 技巧</div>
+      <h2>高效提示技巧</h2>
+      <p>用好 Mia 的關鍵不在學功能，而在<b>開口的方式</b>。核心公式：</p>
+      <div class="callout ex"><div class="label">🎯 下需求公式</div><p><b>成果 + 情境 + 受眾 + 產出形式</b>。例如：「一份 [客戶] 本週 RTB 週報（成果）｜資料在附檔（情境）｜給客戶窗口看、專業繁中（受眾）｜Excel + 一頁摘要，存進 Library（產出形式）」。</p></div>
+      <h3>Before → After</h3>
+      <div class="compare">
+        <div class="dont"><h4>❌ 別這樣說</h4><ul><li>「幫我看一下這個客戶的數據」</li><li>「寫幾篇小紅書」</li></ul></div>
+        <div class="do"><h4>✅ 這樣說</h4><ul><li>「做 [客戶] 本週 RTB 週報，重點投放成效與下週建議，Excel＋摘要，存 Library」</li><li>「幫某餐廳寫 5 篇 XHS 水下筆記，先過審查規則，每篇人設不同」</li></ul></div>
+      </div>
+      <h3>七個關鍵思維轉變</h3>
+      <div class="card">
+        <div class="mind"><span class="num">1</span><div><b>說「結果與情境」，不說「步驟」。</b>告訴她要什麼交付物、給誰、何時、什麼風格，不用教她怎麼做。</div></div>
+        <div class="mind"><span class="num">2</span><div><b>先問有沒有現成 Skill。</b>判斷「做不到」之前，先讓她搜 Skilla 目錄。</div></div>
+        <div class="mind"><span class="num">3</span><div><b>把有價值的產出放進 Library。</b>對話會過去，Library 會留下。</div></div>
+        <div class="mind"><span class="num">4</span><div><b>讓 Mia 反問你。</b>需求不清時，鼓勵她先問 2–3 題再動手。</div></div>
+        <div class="mind"><span class="num">5</span><div><b>一次交代完整背景，勝過來回補充。</b>客戶、目標、受眾、限制、期限一次講清。</div></div>
+        <div class="mind"><span class="num">6</span><div><b>重複的事設成 Routine。</b>別每週手動重講同一件事。</div></div>
+        <div class="mind"><span class="num">7</span><div><b>要她主動通知你。</b>大任務跑完可請她用 Slack／Email 提醒，你不用一直守著。</div></div>
+      </div>
+    </section>
+
+    <section id="recipes">
+      <div class="eyebrow">15 · 工具箱</div>
+      <h2>Prompt 食譜庫</h2>
+      <p class="kicker">複製整段，把 [方括號] 換成你的實際內容即可。</p>
+      <h4>① RTB 週報</h4>
+      <div class="recipe">幫我做 <b>[客戶名]</b> 上週（<b>[日期範圍]</b>）的 RTB 成效週報。資料：<b>[dashboard 連結／附檔]</b>。
+重點：花費、impressions、CTR、CVR、CPA，與前一週對比。輸出一頁 Excel + 三句重點，語氣專業給 <b>[窗口]</b>，存進 Library。</div>
+      <h4>② KOC／達人 Brief 更新</h4>
+      <div class="recipe">更新 <b>[campaign 名]</b> 的 KOC brief。變動：<b>[發布時間／必帶標籤／禁用詞…]</b>。
+產出一份達人可直接看的 brief（繁中），標出這次改動處，方便我轉給達人。</div>
+      <h4>③ 沉澱成一個可複用 Skill</h4>
+      <div class="recipe">我們剛做的 <b>[流程]</b> 以後每次都會用。幫我整理成一個可複用 Skill，下次直接套用。</div>
+      <h4>④ 按客戶整理 Library</h4>
+      <div class="recipe">把這個對話有價值的產出歸進 Library 的 <b>[客戶名]</b> 夾，依 README / roadmap / content / reports / assets / links / archive 分類，並更新 README 與 roadmap。</div>
+      <h4>⑤ 請 Mia email／Slack 同事</h4>
+      <div class="recipe">這份 <b>[報告]</b> 完成後，幫我 email 給同事 <b>[姓名／email]</b>，附檔，正文簡短說明重點。以你自己的身分寄。</div>
+      <details>
+        <summary>更多食譜（XHS 批量、WeChat 跨物業、深度研究、設 Routine、回顧會話）</summary>
+        <p style="margin-top:12px"><b>XHS 水下筆記批量、WeChat 跨物業差異化、深度研究、設定 Routine、回顧過去會話</b>的完整模板，分別收錄在 §6、§7、§10、§13 各章的提示詞範例框中，可直接複製。</p>
+      </details>
+    </section>
+
+    <section id="limits">
+      <div class="eyebrow">16 · 界限</div>
+      <h2>安全與界限</h2>
+      <div class="callout limit"><div class="label">🚫 Mia 不會做</div><p>不移動資金（轉帳、付款、審批）、不洩露帳密或機密、不刪除正式（生產）資料。這些動作不可逆，無論誰要求都不會執行。</p></div>
+      <div class="callout limit"><div class="label">🚫 隱私邊界</div><p>不會跨越使用者界限去掃描整個 Portal 的別人工作與檔案；會話洞察也只在你有權限的範圍內。</p></div>
+      <div class="callout tip"><div class="label">💡 這是保護，不是限制</div><p>這些界限讓你可以放心把工作交給 Mia——高風險、不可逆的動作，永遠留在人手上。</p></div>
+    </section>
+
+    <section id="cheat">
+      <div class="eyebrow">17 · 速查</div>
+      <h2>速查表</h2>
+      <h3>哪個任務用哪個能力</h3>
+      <table class="sheet">
+        <thead><tr><th>你想做…</th><th>用這個</th></tr></thead>
+        <tbody>
+          <tr><td>多來源、要引用的研究報告</td><td><code>deep-research</code></td></tr>
+          <tr><td>把重複工作設成定時自動</td><td>Routines（<code>routine-manager</code>）</td></tr>
+          <tr><td>找現成流程／發佈自己的 Skill</td><td>Skilla 目錄（<code>skilla</code>）</td></tr>
+          <tr><td>讓 Mia 通知你／轉寄同事</td><td><code>mia-self</code></td></tr>
+          <tr><td>查某位同事</td><td><code>directory</code></td></tr>
+          <tr><td>回顧過去的會話</td><td>會話洞察（<code>session-insights</code>）</td></tr>
+          <tr><td>跨會話保存客戶產出</td><td>Library（依客戶分類）</td></tr>
+        </tbody>
+      </table>
+      <h3>檔案與 Library 規則</h3>
+      <ul>
+        <li>當前對話用得到的暫存 → <span class="path">file-space/</span>（出現在 Canvas）。</li>
+        <li>需跨會話保存的客戶產出 → <span class="path">library/</span>，依客戶分資料夾。</li>
+        <li>每個活躍客戶夾要有 <b>README.md</b> ＋ <b>roadmap.md</b> ＋ 子夾（content／reports／assets／links／archive）。</li>
+        <li>新對話延續任務：先讀該客戶 README／roadmap 再開工。</li>
+      </ul>
+    </section>
+
+    <section id="faq">
+      <div class="eyebrow">18 · 附錄</div>
+      <h2>詞彙表 &amp; 常見問題</h2>
+      <table class="sheet">
+        <thead><tr><th>名詞</th><th>白話解釋</th></tr></thead>
+        <tbody>
+          <tr><td>Canvas</td><td>對話旁的面板，顯示 Mia 產出的檔案，可即時下載。</td></tr>
+          <tr><td>file-space</td><td>本次對話的產出／暫存區，會出現在 Canvas。</td></tr>
+          <tr><td>library</td><td>跨會話永久保存的工作區，依客戶分類。</td></tr>
+          <tr><td>Skill</td><td>一套現成的專業做法或整合，Mia 可載入使用。</td></tr>
+          <tr><td>Skilla</td><td>Skill 的目錄，可搜尋、取用、發佈自己的 Skill。</td></tr>
+          <tr><td>Routine</td><td>定時自動執行的任務（例如每週報表）。</td></tr>
+          <tr><td>mia-self</td><td>Mia 用她自己的 Slack／Email 通知你或轉寄同事。</td></tr>
+          <tr><td>會話洞察</td><td>回顧過去會話做了什麼、產出哪些檔（權限範圍內）。</td></tr>
+        </tbody>
+      </table>
+      <details><summary>Q：我需要懂技術嗎？</summary><p>不需要。用日常語言說清楚「要什麼結果、給誰、什麼時候、什麼形式」即可。</p></details>
+      <details><summary>Q：Mia 可以在 Portal 以外用嗎？</summary><p>可以。同一套 Skilla 目錄也能在你的筆電與其他終端使用；請 Mia 載入 skilla 技能即可拿到設定步驟。</p></details>
+      <details><summary>Q：檔案會不會不見？</summary><p>放進 <b>library/</b> 的會永久保存、跨會話可用；只留在對話裡的暫存則可能隨對話變長被壓縮——重要產出記得請她收進 Library。</p></details>
+      <details><summary>Q：怎麼知道 Mia 有沒有新功能？</summary><p>看 <b>Part 2 · 更新情報（What's New）</b>——每有新能力就在那裡第一手更新，並附「怎麼用」。</p></details>
+    </section>
+
+    <footer>
+      Mia 說明書 Part 1（功能與使用指南）v1.0 · 為 IHK AM 團隊製作 · 最新功能請見 Part 2 更新情報 · 2026-07
+    </footer>
+  </main>
+</div>
+
+<button id="top" aria-label="回到頂部" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  var secs = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  var topBtn = document.getElementById('top');
+  function onScroll(){
+    var y = window.scrollY + 120, idx = 0;
+    for (var i=0;i<secs.length;i++){ if (secs[i] && secs[i].offsetTop <= y) idx = i; }
+    links.forEach(function(l,i){ l.classList.toggle('active', i===idx); });
+    topBtn.classList.toggle('show', window.scrollY > 600);
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+</script>
+</body>
+</html>
