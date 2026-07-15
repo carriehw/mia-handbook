@@ -1,0 +1,168 @@
+{
+  "updated": "2026-07-15",
+  "note": "Mia 用例與提示食譜單一資料源。gallery / search / 團隊食譜庫共用。新增請追加物件（保持欄位一致）。",
+  "recipes": [
+    {
+      "id": "rtb-weekly",
+      "title": "每週 RTB 成效週報",
+      "prompt": "幫我做 [客戶名] 上週（[日期範圍]）的 RTB 成效週報。資料：[dashboard 連結／附檔]。重點：花費、impressions、CTR、CVR、CPA，與前一週對比、異常說明、下週 2–3 點建議。輸出一頁 Excel + 三句重點總結，語氣專業給 [客戶窗口]，完成後存進 Library 的 [客戶] > reports。",
+      "task": ["週報", "數據報表"],
+      "client": ["L'Occitane", "通用"],
+      "cap": ["檔案交付", "Library"],
+      "level": "day1"
+    },
+    {
+      "id": "wechat-multi",
+      "title": "WeChat 文章（跨物業差異化）",
+      "prompt": "幫 [客戶] 旗下 [物業 A、物業 B、物業 C] 各寫一篇 WeChat 推文。每間必須有不同切入角度與行文，不要互相雷同——[物業 A] 主打 [賣點]、[物業 B] 主打 [賣點]、[物業 C] 主打 [賣點]。受眾：計劃赴 [目的地] 的中國高端旅客。每篇約 [字數]，附標題與導語。",
+      "task": ["內容-WeChat"],
+      "client": ["Hyatt", "通用"],
+      "cap": ["內容產製"],
+      "level": "day1"
+    },
+    {
+      "id": "xhs-batch",
+      "title": "XHS 水下筆記（批量、過審查）",
+      "prompt": "幫 [客戶／餐廳] 生產 [數量] 篇 XHS 水下筆記，主題 [主題]。先自我審查（促銷詞、價格、酒類、廣告法絕對化、商標詞、官方語氣、AI 生成信號、模板化、協同發布信號）再輸出。每篇要有不同人設聲音與開頭，不要套同一句式。輸出成清單存進 Library。",
+      "task": ["內容-XHS"],
+      "client": ["Business France", "通用"],
+      "cap": ["內容產製"],
+      "level": "week1"
+    },
+    {
+      "id": "koc-brief",
+      "title": "KOC／達人 Brief 更新",
+      "prompt": "更新 [campaign 名] 的 KOC brief。變動：[發布時間／必帶標籤／禁用詞…]。產出一份達人可直接看的 brief（繁中），標出這次的改動處，方便我轉給達人。",
+      "task": ["KOC達人"],
+      "client": ["Wynn", "通用"],
+      "cap": ["內容產製", "檔案交付"],
+      "level": "week1"
+    },
+    {
+      "id": "deep-research",
+      "title": "競品／市場深度研究（附引用）",
+      "prompt": "用深度研究幫我出一份 [主題，例如法國美食節在中國社媒的行銷玩法] 報告。範圍：[時間／地區／品類，例如中國市場、XHS + WeChat]。我要：關鍵發現、對我們客戶的機會點、附來源引用，結尾給 3 條可落地建議。產出：繁體中文報告，存到 Library 的 [客戶] > reports > research。",
+      "task": ["市場研究"],
+      "client": ["Business France", "通用"],
+      "cap": ["deep-research", "檔案交付"],
+      "level": "week1"
+    },
+    {
+      "id": "library-organize",
+      "title": "按客戶整理 Library",
+      "prompt": "幫我把這個對話裡有價值的產出，歸進 Library 的 [客戶名] 資料夾。依 README / roadmap / content / reports / assets / links / archive 結構分類，並更新該客戶的 README.md 與 roadmap.md。之後每次我提到 [客戶]，請先讀它的 README 與 roadmap 再繼續。",
+      "task": ["Library整理"],
+      "client": ["通用"],
+      "cap": ["Library"],
+      "level": "week1"
+    },
+    {
+      "id": "resume-context",
+      "title": "跨會話延續任務",
+      "prompt": "先讀 Library 裡 [客戶名] 的 README 與 roadmap，摘要目前進度與未完成事項，然後接著做 [今天要推進的事]。",
+      "task": ["Library整理"],
+      "client": ["通用"],
+      "cap": ["Library", "會話洞察"],
+      "level": "adv"
+    },
+    {
+      "id": "set-routine",
+      "title": "設定一個定時 Routine",
+      "prompt": "幫我設一個每週 [星期幾 幾點] 的 Routine：自動整理 [客戶名] 上週的 [報表／數據]，做成週報存進 Library，完成後用你的管道提醒我一聲。",
+      "task": ["設Routine"],
+      "client": ["通用"],
+      "cap": ["Routines", "mia-self"],
+      "level": "adv"
+    },
+    {
+      "id": "sink-skill",
+      "title": "把重複流程沉澱成 Skill",
+      "prompt": "我們剛剛做的 [某流程，例如 RTB 週報] 以後每次都會用到。幫我看看能不能整理成一個可複用的 Skill，讓全團隊下次直接套用。",
+      "task": ["建Skill"],
+      "client": ["通用"],
+      "cap": ["Skills"],
+      "level": "adv"
+    },
+    {
+      "id": "mia-email",
+      "title": "請 Mia email／Slack 同事",
+      "prompt": "這份 [報告名] 完成後，幫我 email 給同事 [姓名／email]，附上檔案，正文簡短說明這是什麼、重點在哪。以你自己的身分寄。",
+      "task": ["通知協作"],
+      "client": ["通用"],
+      "cap": ["mia-self"],
+      "level": "week1"
+    },
+    {
+      "id": "session-review",
+      "title": "回顧過去的會話",
+      "prompt": "幫我找一下之前關於 [客戶／主題] 的對話，摘要當時做了什麼、產出了哪些檔案、有沒有未完成的事，方便我接著做。",
+      "task": ["回顧會話"],
+      "client": ["通用"],
+      "cap": ["會話洞察"],
+      "level": "week1"
+    },
+    {
+      "id": "remember-pref",
+      "title": "教 Mia 記住偏好",
+      "prompt": "以後所有給客戶的報告都用繁體中文、專業口吻；每個客戶的產出都幫我歸進 Library 對應資料夾。請記住這些偏好。",
+      "task": ["記憶偏好"],
+      "client": ["通用"],
+      "cap": ["記憶"],
+      "level": "day1"
+    },
+    {
+      "id": "monthly-report",
+      "title": "月度客戶報告",
+      "prompt": "幫我做 [客戶名] [月份] 的月度成效報告。整合 [各週數據／dashboard]，涵蓋：整體投放成效、與上月對比、各渠道亮點、學到什麼、下月策略建議。輸出一份可交客戶的簡報或 PDF，繁中，存進 Library 的 [客戶] > reports。",
+      "task": ["數據報表", "提案pitch"],
+      "client": ["通用"],
+      "cap": ["檔案交付", "Library"],
+      "level": "week1"
+    },
+    {
+      "id": "pitch-deck",
+      "title": "新客戶 / 提案簡報骨架",
+      "prompt": "幫我起一份 [客戶／提案主題] 的 pitch 簡報骨架：市場機會、目標受眾洞察、我們的中國市場打法（WeChat / XHS / KOC）、預期成效與時程。先給大綱與每頁重點，我確認後再展開。",
+      "task": ["提案pitch"],
+      "client": ["通用"],
+      "cap": ["檔案交付", "deep-research"],
+      "level": "adv"
+    },
+    {
+      "id": "media-plan-check",
+      "title": "Media plan 檢查",
+      "prompt": "幫我檢查這份 [客戶] 的 media plan（附檔）：預算加總是否正確、各渠道分配是否合理、日期與檔期有無衝突、有沒有明顯漏項。列出問題清單與修正建議。",
+      "task": ["數據報表"],
+      "client": ["通用"],
+      "cap": ["檔案交付"],
+      "level": "week1"
+    },
+    {
+      "id": "competitor-social",
+      "title": "競品社媒動態掃描",
+      "prompt": "幫我掃描 [競品 A、競品 B] 最近在 [XHS / WeChat / 抖音] 的行銷動態：主打活動、內容角度、KOL 合作、可借鑒之處。整理成一頁重點，附連結，給 [客戶] 參考。",
+      "task": ["市場研究"],
+      "client": ["通用"],
+      "cap": ["deep-research"],
+      "level": "week1"
+    },
+    {
+      "id": "content-calendar",
+      "title": "月度內容排期表",
+      "prompt": "幫 [客戶] 做 [月份] 的社媒內容排期表（WeChat + XHS）：每則的主題、賣點、格式、發布日、負責平台。做成表格存進 Library 的 [客戶] > content。",
+      "task": ["內容-WeChat", "內容-XHS"],
+      "client": ["Hyatt", "通用"],
+      "cap": ["檔案交付", "Library"],
+      "level": "week1"
+    },
+    {
+      "id": "weekly-recap-email",
+      "title": "週報客戶郵件草稿",
+      "prompt": "根據這週的 [客戶] 週報，幫我草擬一封給客戶窗口的 recap email：兩句進展、一張重點數字、下週我們會做什麼。語氣專業友善、繁中。",
+      "task": ["週報", "通知協作"],
+      "client": ["通用"],
+      "cap": ["檔案交付", "mia-self"],
+      "level": "day1"
+    }
+  ]
+}
