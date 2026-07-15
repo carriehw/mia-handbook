@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mia 說明書 Part 2 · 更新情報 What's New（IHK AM 團隊）</title>
+<style>
+  :root {
+    --accent:#B45E3C; --accent-strong:#9A4A2C; --accent-tint:#F6E9E1;
+    --ink:#2A2622; --ink-strong:#1C1917; --muted:#726B63; --faint:#968C81;
+    --paper:#FBF7F1; --surface:#FFFFFF; --surface-alt:#F4EEE6;
+    --border:#E7DFD4; --border-strong:#D8CCBC;
+    --tip:#2E7D5B; --tip-bg:#E7F3EC; --warn:#B4791E; --warn-bg:#FBF0DA;
+    --limit:#B4382E; --limit-bg:#FBE7E4; --ex:#2E5E8C; --ex-bg:#E6EFF6;
+    --font-sans:"PingFang TC","Microsoft JhengHei","Noto Sans TC","Heiti TC",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+    --font-serif:"Songti TC","PingFang TC",Georgia,"Times New Roman",serif;
+    --font-mono:"SFMono-Regular","SF Mono","Cascadia Code",Consolas,"Courier New",monospace;
+    --maxw:820px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px;
+    --sp-6:32px; --sp-7:48px; --sp-8:64px; --sp-9:96px;
+    --r-sm:8px; --r:14px; --r-lg:22px;
+    --shadow:0 1px 2px rgba(28,25,23,.04),0 6px 20px rgba(28,25,23,.06);
+    --shadow-lift:0 4px 10px rgba(28,25,23,.06),0 14px 34px rgba(28,25,23,.10);
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+  body { margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--font-sans); font-size:16px; line-height:1.75;
+    letter-spacing:.01em; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1200px; margin:0 auto; display:grid;
+          grid-template-columns:240px minmax(0,1fr); gap:var(--sp-7); padding:0 var(--sp-5); }
+  main { max-width:var(--maxw); padding-bottom:var(--sp-9); }
+  h1,h2,h3,h4 { color:var(--ink-strong); margin:0 0 var(--sp-4); line-height:1.3; }
+  h1 { font-family:var(--font-serif); font-size:2.6rem; font-weight:700; letter-spacing:-.01em; line-height:1.2; }
+  h2 { font-family:var(--font-serif); font-size:1.85rem; font-weight:700; letter-spacing:-.005em; }
+  h3 { font-size:1.15rem; font-weight:600; }
+  h4 { font-size:1.05rem; font-weight:600; letter-spacing:.02em; }
+  p { margin:0 0 var(--sp-4); }
+  ul,ol { margin:0 0 var(--sp-4); padding-left:1.4em; }
+  li { margin:4px 0; }
+  a { color:var(--accent); text-decoration:none; }
+  a:hover { color:var(--accent-strong); text-decoration:underline; }
+  .eyebrow { font-size:.8rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+             color:var(--accent); margin-bottom:var(--sp-2); }
+  .lede { color:var(--muted); font-size:1.05rem; }
+  small,.small { font-size:.85rem; color:var(--muted); }
+  .kicker { color:var(--muted); font-size:.92rem; margin:-8px 0 var(--sp-5); }
+  .hero { background:linear-gradient(180deg,#FFFDFA,var(--accent-tint));
+          border:1px solid var(--border); border-radius:var(--r-lg);
+          padding:var(--sp-8) var(--sp-7); margin:var(--sp-6) 0 var(--sp-7); box-shadow:var(--shadow); }
+  .hero .rule { width:56px; height:3px; background:var(--accent); border-radius:2px; margin:var(--sp-5) 0; }
+  .meta { display:flex; flex-wrap:wrap; gap:var(--sp-5); color:var(--muted); font-size:.9rem; }
+  .meta b { color:var(--ink-strong); font-weight:600; }
+  nav.toc { position:sticky; top:var(--sp-5); align-self:start; padding-top:var(--sp-6);
+            max-height:100vh; overflow:auto; }
+  nav.toc .brand { font-family:var(--font-serif); font-weight:700; color:var(--ink-strong);
+                   font-size:1.05rem; margin-bottom:var(--sp-5); }
+  nav.toc a { display:block; color:var(--muted); font-size:.9rem; padding:6px 12px;
+              border-left:2px solid transparent; border-radius:0 6px 6px 0; }
+  nav.toc a:hover { background:var(--accent-tint); color:var(--ink-strong); text-decoration:none; }
+  nav.toc a.active { color:var(--accent-strong); border-left-color:var(--accent);
+                     background:var(--accent-tint); font-weight:600; }
+  section { padding-top:var(--sp-7); scroll-margin-top:var(--sp-5); }
+  .card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r);
+          padding:var(--sp-6); box-shadow:var(--shadow); margin:var(--sp-5) 0; }
+  .callout { border:1px solid var(--border); border-left-width:4px; border-radius:var(--r-sm);
+             padding:var(--sp-4) var(--sp-5); margin:var(--sp-5) 0; }
+  .callout .label { font-weight:700; display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .callout p:last-child { margin-bottom:0; }
+  .callout.tip { background:var(--tip-bg); border-left-color:var(--tip); }
+  .callout.tip .label { color:var(--tip); }
+  .callout.ex { background:var(--ex-bg); border-left-color:var(--ex); }
+  .callout.ex .label { color:var(--ex); }
+  .recipe { position:relative; background:var(--surface-alt); border:1px dashed var(--border-strong);
+            border-radius:var(--r-sm); padding:var(--sp-6) var(--sp-5) var(--sp-5);
+            font-family:var(--font-mono); font-size:.9rem; line-height:1.7; color:var(--ink);
+            white-space:pre-wrap; margin:var(--sp-4) 0 0; }
+  .recipe::before { content:"這樣說"; position:absolute; top:-10px; left:16px;
+                    background:var(--accent); color:#fff; font-family:var(--font-sans);
+                    font-size:.72rem; font-weight:700; letter-spacing:.08em;
+                    padding:2px 10px; border-radius:20px; }
+  .recipe b { color:var(--accent-strong); }
+  /* timeline */
+  .tl { position:relative; margin:var(--sp-6) 0 0; padding-left:28px; }
+  .tl::before { content:""; position:absolute; left:6px; top:6px; bottom:6px; width:2px; background:var(--border-strong); }
+  .entry { position:relative; margin:0 0 var(--sp-6); }
+  .entry::before { content:""; position:absolute; left:-28px; top:6px; width:14px; height:14px;
+                   border-radius:50%; background:var(--accent); border:3px solid var(--paper); box-shadow:0 0 0 1px var(--border-strong); }
+  .entry.baseline::before { background:var(--muted); }
+  .when { display:inline-block; font-family:var(--font-mono); font-size:.8rem; font-weight:700;
+          letter-spacing:.04em; color:var(--accent-strong); background:var(--accent-tint);
+          padding:2px 10px; border-radius:20px; margin-bottom:var(--sp-3); }
+  .tag { display:inline-block; font-size:.7rem; font-weight:700; letter-spacing:.05em;
+         padding:2px 9px; border-radius:20px; margin-left:6px; vertical-align:middle; }
+  .tag.new { background:var(--tip-bg); color:var(--tip); }
+  .tag.chg { background:var(--warn-bg); color:var(--warn); }
+  .tag.base { background:var(--surface-alt); color:var(--muted); }
+  .entry .card { margin:0; }
+  .entry h3 { margin:0 0 var(--sp-3); }
+  .howto { font-weight:600; color:var(--ink-strong); margin:var(--sp-4) 0 4px; }
+  .maps { font-size:.85rem; color:var(--muted); margin-top:var(--sp-3); }
+  #top { position:fixed; right:22px; bottom:22px; background:var(--accent); color:#fff;
+         width:44px; height:44px; border-radius:50%; display:none; align-items:center;
+         justify-content:center; box-shadow:var(--shadow-lift); font-size:1.2rem; cursor:pointer; border:none; z-index:20; }
+  #top.show { display:flex; }
+  footer { margin-top:var(--sp-8); padding-top:var(--sp-5); border-top:1px solid var(--border);
+           text-align:center; color:var(--muted); font-size:.85rem; }
+  @media (max-width:960px) {
+    .wrap { grid-template-columns:1fr; gap:0; }
+    nav.toc { position:sticky; top:0; z-index:10; max-height:none; padding:var(--sp-3) 0;
+              background:var(--paper); border-bottom:1px solid var(--border); }
+    nav.toc a { display:inline-block; border-left:none; }
+    nav.toc .brand { display:none; }
+    h1 { font-size:2.1rem; }
+  }
+  @page { margin:16mm; }
+  @media print {
+    body { background:#fff; color:#000; font-size:11.5pt; }
+    .wrap { display:block; max-width:none; padding:0; }
+    nav.toc,#top { display:none; }
+    .hero { background:#fff; box-shadow:none; }
+    .card { box-shadow:none; border:1px solid #bbb; }
+    .card,.callout,.recipe,.entry { break-inside:avoid; }
+    a { color:#000; text-decoration:underline; }
+  }
+
+  /* --- mini-site additions --- */
+  .site{position:sticky;top:0;z-index:30;background:rgba(251,247,241,.94);
+        -webkit-backdrop-filter:saturate(1.2) blur(8px);backdrop-filter:saturate(1.2) blur(8px);
+        border-bottom:1px solid var(--border);}
+  .site-in{max-width:1200px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;
+           justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .site .logo{font-family:var(--font-serif);font-weight:700;color:var(--ink-strong);font-size:1.05rem;
+              text-decoration:none;white-space:nowrap;}
+  .site .logo:hover{color:var(--accent-strong);text-decoration:none;}
+  .site-nav{display:flex;gap:4px;flex-wrap:wrap;}
+  .site-nav a{font-size:.9rem;color:var(--muted);padding:6px 12px;border-radius:20px;
+              text-decoration:none;white-space:nowrap;}
+  .site-nav a:hover{background:var(--accent-tint);color:var(--ink-strong);text-decoration:none;}
+  .site-nav a.cur{background:var(--accent);color:#fff;}
+  nav.toc{top:66px;max-height:calc(100vh - 76px);}
+  section{scroll-margin-top:76px;}
+  .page{max-width:900px;margin:0 auto;padding:0 24px 96px;}
+  .linkcard{display:block;text-decoration:none;color:inherit;
+            transition:transform .18s ease,box-shadow .18s ease;}
+  .linkcard:hover{transform:translateY(-2px);box-shadow:var(--shadow-lift);text-decoration:none;color:inherit;}
+  .linkcard .go{color:var(--accent);font-weight:600;font-size:.92rem;margin-top:16px;display:inline-block;}
+  @media (max-width:960px){
+    nav.toc{display:none!important;}
+    .site-in{padding:8px 16px;}
+    .site .logo{font-size:.98rem;}
+    .site-nav a{font-size:.82rem;padding:5px 10px;}
+    .page{padding:0 16px 64px;}
+  }
+</style>
+</head>
+<body>
+<header class="site"><div class="site-in"><a class="logo" href="index.html">✦ Mia 說明書</a><nav class="site-nav"><a href="index.html">首頁</a><a href="part1.html">Part 1 · 功能指南</a><a href="part2.html" class="cur">Part 2 · 更新情報</a></nav></div></header>
+
+<div class="wrap">
+  <nav class="toc" id="toc">
+    <div class="brand">Mia 說明書 · Part 2</div>
+    <a href="#how">如何使用本頁</a>
+    <a href="#timeline">更新時間軸</a>
+    <a href="#e-202607">2026-07 · 首發基準</a>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div class="eyebrow">Mia 說明書 · Part 2 / 2</div>
+      <h1>Mia 更新情報 · What's New</h1>
+      <p class="lede">Mia 每有新功能，這裡第一手更新——並告訴你「怎麼用」。要學 Mia 的全部功能，請看 Part 1 功能與使用指南。</p>
+      <div class="rule"></div>
+      <div class="meta">
+        <span>最後更新 <b>2026-07-15</b></span>
+        <span>對象 <b>IHK AM 團隊</b></span>
+        <span>維護 <b>每月自動巡檢</b></span>
+      </div>
+    </header>
+
+    <section id="how">
+      <div class="eyebrow">A · 使用說明</div>
+      <h2>如何使用本頁</h2>
+      <p>這頁是團隊掌握 Mia 新能力的<b>第一手情報站</b>。Mia 的功能會在平台端持續演進，我們用一個每月自動巡檢的機制，把「有意義的變化」寫進這裡，讓大家不會錯過。</p>
+
+      <div class="card">
+        <h4>每則更新怎麼讀</h4>
+        <ul>
+          <li><b>日期</b> — 這項變化被記錄的時間。</li>
+          <li><span class="tag new">新功能</span> / <span class="tag chg">功能改變</span> / <span class="tag base">基準</span> — 變化類型。</li>
+          <li><b>是什麼</b> — 一句話講清這項能力。</li>
+          <li><b>怎麼用</b> — 你可以怎麼開口，含可複製的示範。</li>
+          <li><b>對應章節</b> — 在 Part 1 哪一章有完整說明。</li>
+        </ul>
+      </div>
+
+      <div class="callout ex"><div class="label">🔔 你會被通知</div><p>每次偵測到 Mia 有有意義的新變化，系統會自動更新這頁，並由 Mia 用她自己的通道（Slack／Email）通知團隊——你不用自己來查。若某月沒有變化，就不打擾你。</p></div>
+      <div class="callout tip"><div class="label">💡 想更即時？</div><p>目前每月 1 號自動巡檢一次。若團隊想更靈敏（例如每兩週或每週一），跟 Mia 說一聲即可調整。</p></div>
+    </section>
+
+    <section id="timeline">
+      <div class="eyebrow">B · 時間軸</div>
+      <h2>更新時間軸</h2>
+      <p class="kicker">最新在上。每則都附「怎麼用」。</p>
+
+      <div class="tl">
+        <div class="entry baseline" id="e-202607">
+          <span class="when">2026-07-15</span><span class="tag base">基準</span>
+          <div class="card">
+            <h3>Mia 說明書首發 — 能力基準</h3>
+            <p><b>是什麼：</b>本次建立團隊版 Mia 說明書（Part 1 + Part 2），並記錄下 Mia 目前的完整能力做為基準。日後的「新功能」都以此為對照起點。</p>
+            <p><b>目前已具備的核心能力（詳見 Part 1）：</b></p>
+            <ul>
+              <li>對話 + <b>檔案交付</b>（Excel／簡報／報告／圖片，自動送到下載／Email／Slack）</li>
+              <li><b>記憶與個人化</b>、<b>Library</b> 跨會話依客戶保存</li>
+              <li><b>Skills 與 Skilla 目錄</b>（現成專業流程、可自建可複用 Skill）</li>
+              <li><b>Routines</b> 定時自動任務、<b>子代理</b>並行處理</li>
+              <li><b>deep-research</b> 深度研究、<b>mia-self</b> 通知/轉寄、<b>會話洞察</b>、<b>directory</b></li>
+              <li>對話模型：Claude Opus 4.8（1M context）</li>
+            </ul>
+            <p class="howto">怎麼用：</p>
+            <p>先讀 <b>Part 1 · 功能與使用指南</b> 建立全貌；日常照 Part 1 的 Prompt 食譜開口即可。</p>
+            <p class="maps">對應章節：Part 1 全書</p>
+          </div>
+        </div>
+
+        <!-- 新的更新會由每月巡檢自動插入在這行上方（最新在最上），格式如下：
+        <div class="entry" id="e-YYYYMM">
+          <span class="when">YYYY-MM-DD</span><span class="tag new">新功能</span>
+          <div class="card">
+            <h3>功能名稱</h3>
+            <p><b>是什麼：</b>一句話。</p>
+            <p class="howto">怎麼用：</p>
+            <p>說明 + 示範。</p>
+            <div class="recipe">可複製的提示示範…</div>
+            <p class="maps">對應章節：Part 1 §X</p>
+          </div>
+        </div>
+        -->
+      </div>
+
+      <div class="callout tip"><div class="label">💡 尚無其他更新</div><p>自首發以來暫無新變化。一旦 Mia 推出新能力，這裡會第一時間補上，並通知團隊。</p></div>
+    </section>
+
+    <footer>
+      Mia 說明書 Part 2（更新情報 What's New）· 為 IHK AM 團隊製作 · 每月自動巡檢維護 · 最後更新 2026-07-15
+    </footer>
+  </main>
+</div>
+
+<button id="top" aria-label="回到頂部" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  var secs = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  var topBtn = document.getElementById('top');
+  function onScroll(){
+    var y = window.scrollY + 120, idx = 0;
+    for (var i=0;i<secs.length;i++){ if (secs[i] && secs[i].offsetTop <= y) idx = i; }
+    links.forEach(function(l,i){ l.classList.toggle('active', i===idx); });
+    topBtn.classList.toggle('show', window.scrollY > 600);
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+</script>
+</body>
+</html>
