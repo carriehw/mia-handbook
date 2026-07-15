@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>上手學習 · Mia 團隊說明書</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div class="page">
+  <header class="hero">
+    <div class="eyebrow">上手學習 · Onboarding</div>
+    <h1>邊做邊學，五步上手 Mia</h1>
+    <p class="lede">照著清單做，每一步都有可見產出；勾選會自動記住你的進度（存在本機）。</p>
+  </header>
+
+  <div class="tipcard" style="margin:0 0 32px">
+    <div class="k">💡 每日一招</div>
+    <div class="body" id="tip-body">下需求用公式：成果＋情境＋受眾＋產出形式，第一版就接近可用。</div>
+  </div>
+
+  <h2>你的上手清單</h2>
+  <div class="progress"><i></i></div>
+  <div class="small" id="progress-pct" style="margin-top:-14px"></div>
+
+  <ul class="checklist" id="checklist">
+    <li><input type="checkbox" value="d1-report">
+      <div><span class="step-t">做一份客戶週報草稿<span class="lvl d1">Day 1</span></span>
+      <p>點名一個數據檔，說「幫我做 [客戶] 本週 RTB recap，重點投放成效與下週建議」。→ 體驗檔案交付。</p></div></li>
+    <li><input type="checkbox" value="d1-content">
+      <div><span class="step-t">寫一則內容<span class="lvl d1">Day 1</span></span>
+      <p>給品牌、賣點、受眾，請 Mia 寫一則 XHS 筆記或 WeChat 段落。</p></div></li>
+    <li><input type="checkbox" value="d1-memory">
+      <div><span class="step-t">教 Mia 記住偏好<span class="lvl d1">Day 1</span></span>
+      <p>「以後所有報告都用繁體中文、專業口吻。」→ 之後不用每次重講。</p></div></li>
+    <li><input type="checkbox" value="w1-library">
+      <div><span class="step-t">建立第一個客戶 Library 夾<span class="lvl w1">Week 1</span></span>
+      <p>請 Mia 依 client 結構（README＋roadmap＋子夾）整理某客戶的產出。</p></div></li>
+    <li><input type="checkbox" value="w1-research">
+      <div><span class="step-t">跑一次深度研究<span class="lvl w1">Week 1</span></span>
+      <p>用深度研究出一份帶引用的競品／趨勢報告。</p></div></li>
+    <li><input type="checkbox" value="w1-routine">
+      <div><span class="step-t">設第一個定時 Routine<span class="lvl w1">Week 1</span></span>
+      <p>例如每週一自動草擬某客戶的 RTB 週報骨架。</p></div></li>
+    <li><input type="checkbox" value="w1-formula">
+      <div><span class="step-t">練「成果＋情境＋受眾」下需求<span class="lvl w1">Week 1</span></span>
+      <p>用公式重下一次需求，比較產出差異。</p></div></li>
+    <li><input type="checkbox" value="adv-skill">
+      <div><span class="step-t">沉澱一個 Skill<span class="lvl adv">進階</span></span>
+      <p>把反覆用的流程請 Mia 整理成可複用 Skill，全團隊共用。</p></div></li>
+    <li><input type="checkbox" value="adv-resume">
+      <div><span class="step-t">跨會話延續<span class="lvl adv">進階</span></span>
+      <p>新對話開場：「先讀 [客戶] Library 的 README 與 roadmap 再繼續。」</p></div></li>
+    <li><input type="checkbox" value="adv-notify">
+      <div><span class="step-t">讓 Mia 主動通知你<span class="lvl adv">進階</span></span>
+      <p>大任務完成用 mia-self（她自己的 Slack／Email）提醒你。</p></div></li>
+  </ul>
+  <p class="small">➡ 每一步的可複製提示，都能在 <a href="gallery.html">用例藝廊</a> 找到並一鍵複製。</p>
+
+  <h2 style="margin-top:48px">開口的關鍵：Before → After</h2>
+  <div class="compare">
+    <div class="dont"><h4>❌ 別這樣說</h4><ul><li>「幫我看一下這個客戶的數據」</li><li>「寫幾篇小紅書」</li></ul></div>
+    <div class="do"><h4>✅ 這樣說</h4><ul><li>「做 [客戶] 本週 RTB 週報，重點投放成效與下週建議，Excel＋摘要，存 Library」</li><li>「幫某餐廳寫 5 篇 XHS 水下筆記，先過審查規則，每篇人設不同」</li></ul></div>
+  </div>
+  <div class="callout tip"><div class="label">💡 差別在哪</div><p>好指令 = 成果＋情境＋受眾＋產出形式。講清楚這四項，Mia 的第一版就接近可用，省下來回。</p></div>
+
+  <h2 style="margin-top:48px">小測驗：你上手了嗎？</h2>
+  <p class="kicker">點選看看，即時給你答案與說明。</p>
+  <div class="quiz" id="quiz-root"></div>
+
+  <footer>上手學習 · 進度存在你的瀏覽器（localStorage）· Mia 團隊說明書</footer>
+</div>
+
+<script id="tips-data" type="application/json">
+["下需求用公式：成果＋情境＋受眾＋產出形式，第一版就接近可用。","報告做完加一句「存進 Library 的 [客戶] > reports」，下次不用重找。","覺得 Mia 做不到？先請她搜 Skilla 目錄，很多流程已有現成做法。","需求不清時，讓 Mia 先反問你 2–3 題，勝過她猜錯方向。","每週重複的事（週報、巡檢）設成 Routine，自動幫你跑。","新對話開場先讓 Mia 讀該客戶 Library 的 README 與 roadmap，無縫接上進度。","大任務跑完，請 Mia 用她自己的 Slack／Email 通知你，不用一直守著。","要引用、可查證的研究，明確說「用深度研究」。","WeChat 跨物業文章要各有角度，別互相雷同——直接在需求裡點明。","把反覆用的流程請 Mia 沉澱成 Skill，變成全團隊的資產。"]
+</script>
+<script id="quiz-data" type="application/json">
+[{"q":"想讓 Mia 做的報告下次不用重找，應該？","opts":["存進 Library 對應客戶夾","留在對話裡就好","自己下載存電腦","記在便利貼"],"answer":0,"fb":"Library 跨會話持久、依客戶分類。"},
+{"q":"要一份可查證、附引用的競品研究，最好說？","opts":["用深度研究幫我出報告，附來源","隨便查查","給我幾個關鍵字就好","你自己猜"],"answer":0,"fb":"明確說「深度研究」，產出更嚴謹、可對客戶。"},
+{"q":"每週一都要做的週報骨架，最省力的做法？","opts":["設成 Routine 自動跑","每週手動重講一次","叫同事幫忙","乾脆不做"],"answer":0,"fb":"重複的事交給 Routine，無人值守自動執行。"},
+{"q":"下需求最有效的方式是？","opts":["說清楚結果、情境、受眾、產出形式","只丟關鍵字","一句一句慢慢指揮","叫她「快點做」"],"answer":0,"fb":"成果＋情境＋受眾＋產出形式，一次到位。"}]
+</script>
+<script src="assets/app.js" defer></script>
+</body>
+</html>
