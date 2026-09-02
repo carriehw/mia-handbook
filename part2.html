@@ -166,6 +166,8 @@
     <div class="brand">Mia 說明書 · 最新更新</div>
     <a href="#how">如何使用本頁</a>
     <a href="#timeline">更新時間軸</a>
+    <a href="#e-20260902">2026-09-02 · CUP 周報精準對齊</a>
+    <a href="#e-20260818">2026-08-18 · CUP 周報升級</a>
     <a href="#e-20260811">2026-08-11 · 簡報排版升級</a>
     <a href="#e-20260726">2026-07-26 · 飛書升級</a>
     <a href="#e-20260721">2026-07-21 · 技能升級</a>
@@ -180,7 +182,7 @@
       <p class="lede">Mia 每有新功能，這裡第一手更新——並告訴你「怎麼用」。要學 Mia 的全部功能，請看<a href="index.html">功能指南</a>。</p>
       <div class="rule"></div>
       <div class="meta">
-        <span>最後更新 <b>2026-08-11</b></span>
+        <span>最後更新 <b>2026-09-02</b></span>
         <span>對象 <b>IHK AM 團隊</b></span>
         <span>維護 <b>每日自動巡檢</b></span>
       </div>
@@ -212,6 +214,38 @@
       <p class="kicker">最新在上。每則都附「怎麼用」。</p>
 
       <div class="tl">
+        <div class="entry" id="e-20260902">
+          <span class="when">2026-09-02</span><span class="tag chg">功能改變</span>
+          <div class="card">
+            <h3>CUP 周報升級：Crime Stopper Leba 模板精準對齊（v0.4.1）</h3>
+            <p><b>是什麼：</b>cup-weekly-report 升至 v0.4.1，針對 Crime Stopper Leba 混合模板大幅提升準確度——APP 分頁自動按曝光量降序排列（前 9 名）、「虎扑 App＋虎扑」自動合併計算、APP 合計與 CUP 自動對齊（誤差 ±1 以內）、Creative 跨日期彙總，且全部自動偵測，只要附上創意概念分天報告＋APP 分頁模板即生效。</p>
+            <p class="howto">怎麼用：</p>
+            <p>照常把三份檔案交給 Mia，她會自動選用 Crime Stopper Leba 多分頁模板，數字準確度大幅提升，毋需任何額外指示。</p>
+            <div class="recipe">「填 Crime Stopper Leba 周報，附<b>創意概念分天報告.xlsx</b>＋<b>app 報告.xlsx</b>＋<b>模板.xlsx</b>」
+（APP 自動按曝光降序排列，虎扑欄自動合併，總計對齊 CUP ±1，Creative 跨日期彙總）</div>
+            <p class="maps">對應章節：功能指南 §4 Skilla 技能目錄</p>
+          </div>
+        </div>
+
+        <div class="entry" id="e-20260818">
+          <span class="when">2026-08-18</span><span class="tag new">新功能</span>
+          <div class="card">
+            <h3>CUP 周報升級：新增 Leba 及 Crime Stopper 模板（v0.3.8）</h3>
+            <p><b>是什麼：</b>cup-weekly-report 升至 v0.3.8，在原有三種模板（標準版、TC/SC 分欄版、Rosewood 城市版）之上，新增三種模板支援：① Leba 單表格模板——從創意概念分天報告自動附加新日期行；② Crime Stopper 多分頁模板——CUP／APP／Creative／SS 四分頁，從三份原始報告（趨勢日報告＋app 報告＋創意概念報告）自動填充，APP 按廣告系列 KPI（曝光/點擊）排序；③ Crime Stopper Leba 混合模板——CUP 平表格附加＋APP＋Creative＋SS。所有類型均自動偵測，含「虎扑 App ＋虎扑」自動合併及截圖分頁保留。</p>
+            <p class="howto">怎麼用：</p>
+            <p>照常把原始數據 Excel 同 Weekly Report 模板交給 Mia，她會自動辨認模板類型（共六種），毋需手動指定模板版本。Leba 及 Crime Stopper 客戶現可直接使用對應模板，無需額外說明。</p>
+            <div class="recipe">「幫我填 CUP 周報，我附上<b>創意概念分天報告.xlsx</b>同<b>Leba Weekly Report.xlsx</b>」
+（Mia 自動識別 Leba 單表格，附加新日期行，Spend AUD 自動換算）
+
+「填 Crime Stopper CUP 周報，我附上<b>趨勢日報告.xlsx</b>、<b>app 報告.xlsx</b>、<b>創意概念報告.xlsx</b>同<b>模板.xlsx</b>」
+（Mia 自動填充 CUP／APP／Creative 分頁，APP 按 KPI 排序，虎扑自動合併）
+
+「填 Crime Stopper Leba 周報，附<b>創意概念分天報告.xlsx</b>＋<b>app 報告.xlsx</b>＋<b>模板.xlsx</b>」
+（Mia 偵測 CUP 平表格＋APP＋Creative 結構，自動選 Variant F 填充）</div>
+            <p class="maps">對應章節：功能指南 §4 Skilla 技能目錄</p>
+          </div>
+        </div>
+
         <div class="entry" id="e-20260811">
           <span class="when">2026-08-11</span><span class="tag chg">功能改變</span>
           <div class="card">
@@ -312,7 +346,7 @@ Rosewood 專用：
     </section>
 
     <footer>
-      Mia 說明書 · 最新更新（What's New）· 為 IHK AM 團隊製作 · 每日自動巡檢維護 · 最後更新 2026-08-11
+      Mia 說明書 · 最新更新（What's New）· 為 IHK AM 團隊製作 · 每日自動巡檢維護 · 最後更新 2026-09-02
     </footer>
   </main>
 </div>
