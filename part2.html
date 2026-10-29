@@ -166,6 +166,7 @@
     <div class="brand">Mia 說明書 · 最新更新</div>
     <a href="#how">如何使用本頁</a>
     <a href="#timeline">更新時間軸</a>
+    <a href="#e-20261029">2026-10-29 · Google Ads 預算追蹤</a>
     <a href="#e-20261015">2026-10-15 · AI 行銷情報站 v2.0</a>
     <a href="#e-20261014">2026-10-14 · CUP 周報 v0.4.3</a>
     <a href="#e-20260910">2026-09-10 · KOL Analyst 精細化</a>
@@ -187,7 +188,7 @@
       <p class="lede">Mia 每有新功能，這裡第一手更新——並告訴你「怎麼用」。要學 Mia 的全部功能，請看<a href="index.html">功能指南</a>。</p>
       <div class="rule"></div>
       <div class="meta">
-        <span>最後更新 <b>2026-10-15</b></span>
+        <span>最後更新 <b>2026-10-29</b></span>
         <span>對象 <b>IHK AM 團隊</b></span>
         <span>維護 <b>每日自動巡檢</b></span>
       </div>
@@ -219,6 +220,24 @@
       <p class="kicker">最新在上。每則都附「怎麼用」。</p>
 
       <div class="tl">
+        <div class="entry" id="e-20261029">
+          <span class="when">2026-10-29</span><span class="tag new">新功能</span>
+          <div class="card">
+            <h3>Google Ads 預算追蹤技能上架（google-ads-budget-pacing v0.1.0）</h3>
+            <p><b>是什麼：</b>Skilla 新上架 <b>google-ads-budget-pacing</b>，可自動監測 Google Ads 各廣告活動的實際花費與媒體計劃預算之間的差距，計算「截至今日應花多少」與「實際花了多少」的偏差，並標記每條活動的追投狀態——<b>On Track / Under-pacing / Over-pacing</b>。同時給出建議的每日預算調整金額（令廣告系列在月底前回到計劃軌道），以及月底預計總花費預測。結果自動寫入 <b>Lark Bitable</b> 追蹤表，並發郵件通知相關 AM。遇到零花費廣告活動，Mia 會先診斷是否暫停或預算不足——因為兩種情況看起來一樣，卻需要截然相反的處理。</p>
+            <p class="howto">怎麼用：</p>
+            <p>告訴 Mia 查 Google Ads 某個客戶或廣告系列的預算追投狀態，她自動從 MIA Ads 讀取花費數據，比對媒體計劃預算，逐條報告追投進度，並寫入 Lark 及通知你。</p>
+            <div class="recipe">查整體追投狀態：
+「幫我查一下 <b>[客戶名]</b> Google Ads 的預算追投，有冇超速或落後？」
+（Mia 自動計算每條廣告系列：截至今日預期花費 vs 實際花費，標記 On Track / Under / Over，並給出每日預算建議）
+
+設定定期監測：
+「幫我設一個每週 Google Ads 預算追投提醒，有偏差就通知我」
+（Mia 透過 Routine 自動跑追投報告，有異常時主動通知）</div>
+            <p class="maps">對應章節：功能指南 §4 Skilla 技能目錄</p>
+          </div>
+        </div>
+
         <div class="entry" id="e-20261015">
           <span class="when">2026-10-15</span><span class="tag chg">功能改變</span>
           <div class="card">
@@ -436,7 +455,7 @@ Rosewood 專用：
     </section>
 
     <footer>
-      Mia 說明書 · 最新更新（What's New）· 為 IHK AM 團隊製作 · 每日自動巡檢維護 · 最後更新 2026-10-15
+      Mia 說明書 · 最新更新（What's New）· 為 IHK AM 團隊製作 · 每日自動巡檢維護 · 最後更新 2026-10-29
     </footer>
   </main>
 </div>
